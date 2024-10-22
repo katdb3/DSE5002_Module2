@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 A vector is a set of N values arranged in a sequence
 
-The vector many people may be familiar with is cartesion coordinates, in
+The vector many people may be familiar with is cartesian coordinates, in
 which a pair of values (x,y) is used to indicate a position.   This is a two 
 dimensional vector,  we use them all the time in creating graphs.  The values 
 x and y are distances, in feet or meters or some other measure of distance.
@@ -21,7 +21,7 @@ x and y are distances, in feet or meters or some other measure of distance.
 If we wanted to work with three dimensions, we would need a height z as well,
 giving us a 3 dimensional vector (x,y,z)
 
-A set of coordinates such as (3,4,1) means x=3, y=4,z=1, vectors are a compact
+A set of coordinates such as (3,4,1) means x=3, y=4,z=1, so vectors are a compact
 way of writing down this information.
 
 Latitude and longitude form another 2 dimensional vector, (Lat,Long) but these
@@ -91,7 +91,7 @@ prod(Jane_spending)
 ```
 
 
-#Actions:  Create cells that
+# *Actions:  Create cells that*
 
 a. Calculate what Jane spends per week
 
@@ -99,7 +99,7 @@ b. What is Jane's total yearly spending?    Hint: use the sum() function
 
 c. Set up a monthly spending vector for some other person
 
-#Vectorized calculations
+# Vectorized calculations
 
 We can carry out operations on vectors that are
 
@@ -207,7 +207,7 @@ operations
 There is also a form of matrix division %/% as well as element-wise 
 multiplication /
 
-#Vectorized Calculations
+# Vectorized Calculations
 
 In languages such as R and Python, we want to carry out operations on the
 whole vector at the same time, this is called vectorization.
@@ -238,7 +238,7 @@ plot(x,y)
 
 
 
-#Actions
+# *Actions/Questions*
 
 Use code to figure out
 
@@ -247,7 +247,7 @@ b.) What is the minimum y?  what location in the y array does it occur at?
 c.) Which x value produces the minimum y?
 
 
-#Recycling
+# Recycling
 
 R has a feature not seen in other languages
 
@@ -272,7 +272,7 @@ This is a feature of R I really don't like, it is not present in most other
 languages.
 
 
-#Indexing
+# Indexing
 
 We can index, or read values in an array using either 1 or more integer values,
 which are the ordinal locations of the values in the array
@@ -318,7 +318,7 @@ a[slice_values]
  a[a>6]
 ```
 
-#Set Operations
+# Set Operations
 
 We can think of vectors are representing sets of objects
 
@@ -373,7 +373,7 @@ Why did changing the order matter?
 Look up setdiff in the help function
 
 
-#Matrices
+# Matrices
 
 Matrices are rectangular grids of data.   The data always has to be the same
 type, either numeric, integer or complex. 
@@ -417,7 +417,7 @@ dim(b)[1]
 dim(b)[2]
 ```
 
-#Indexing a Matrix
+# Indexing a Matrix
 
 We have to supply both a row number and a column number
 
@@ -444,7 +444,7 @@ b[,-2]
 Notice that the indexing of a vector and of a matrix work the same way,
 a matrix just has 2 indices.
 
-#Special matrics
+# Special matrics
 
 There are some special matrices that we use from time to time
 
@@ -468,7 +468,7 @@ d=matrix(runif(25),nrow=5,ncol=5)
 d
 ```
 
-#Adding row and column names
+# Adding row and column names
 
 we can add row and column names, vectors with the same number of entries of
 rows and columns respectively
@@ -486,7 +486,7 @@ colnames(d) =c("a","b","c","d","e")
 d
 ```
 
-#indexing by name
+# indexing by name
 
 When we have names assigned to rows and columns, we can index
 using the names or numbers
@@ -500,7 +500,7 @@ d['marlenas','a']
 ```
 
 
-#For linear algebra fans
+# For linear algebra fans
 
 This is just a quick look at how R can carry out some common linear
 algebra calculations for you- 
@@ -512,7 +512,7 @@ Here is the determinant
 det(d)
 ```
 
-#Here is the inverse
+# Here is the inverse
 
 We need the Mass library to calculate this
 

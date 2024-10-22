@@ -1,0 +1,222 @@
+---
+title: "Parsing Text"
+author: "HD Sheets"
+date: "2024-07-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Working with Text 
+
+Computer systems use an encoding method to store text
+
+Encoding is usually done at the symbol level, so each letter, number or
+punctuation mark used in human writing is given an integer code.
+
+There are many different encodings in use,   different languages use different
+encodings, and there are multiple encodings in use in English
+
+There are R tools to detect the encoding in a file, see
+
+https://search.r-project.org/CRAN/refmans/stringi/html/stri_enc_detect.html
+
+R can readily convert between encodings and can be used to try to estimate the
+encoding used in a given file
+
+# Character or string arrays
+
+To store a word, or a longer piece of text,  we store it as an array of integer
+encoding values, which the system interprets as text
+
+Files or SQL tables often contain text,   names of people, places etc
+
+We may often want to
+
+-parse text,  meaning break it down into component pieces or elements,  such as
+a persons first and last name,   or extract a city name from an address
+
+-search text for specific values
+
+-extract numbers (such as phone numbers) from strings
+
+-find particular words and replace them with other words
+
+-convert cases (upper/lower)
+
+# Regular Expressions,  or Regex
+
+This is a set of methods for searching text.   They were invented by a 
+mathematician Stephen Kleene in 1951, and are typically available in many 
+computer languages and systems.
+
+Regex based tools were implemented in the Unix operating system in the 1970s, 
+and in the language Perl around 1980.
+
+Regex allows for specifying all kinds of different patterns in text,  allowing
+for wild card values,  allowing for alternative patterns,  specifying case,
+looking for numerals, or punctuation, etc.
+
+We can't really teach Regex fully in this course, it is a big subject.  We will 
+use it in a simple way in the homework, but if you are doing a lot of text 
+processing, you should go through a tutorial on regex,  it will save you a lot
+of time
+
+# Unix or Perl style text searching in R
+
+R has an implementation of many Unix or Perl style tools for text manipulation
+built into base R.
+
+If you are familiar with these, the following tools that all use Regex are available in R
+
+  grep
+  grepl
+  sub
+  gsub
+  regexpr
+  gregexper
+  regexec
+  gregexec
+
+If you have used regex in other languages, you can read up on these functions in
+R and continue using regex.
+
+The Cheat Sheet for Stringr has a discussion of regex on the second page, this
+is a good starting point afor learning regex and a handy table if you know 
+regex
+
+# Stringr
+
+The Stringr package in R is a slightly easier to use set of tools for
+manipulating strings in R.   It really does exactly what the regex family of
+functions above does, but Stringr is easier to use
+
+As with many things in R, there are multiple valid ways to do things,  the 
+regex/Unix/Perl style functions in base R and the fancier functions in
+stringr
+
+Stringr is easier to learn,   but the regex/Unix/Perl methods are avaiable in
+most other languages and database systems,   Stringr is unique to R
+
+# How will you work with text?
+
+Typically you will see text in one of several forms
+
+-as entries in a data frame or data table
+    -things like names, addresses, descriptions
+-as a block of written text,  such as a memo or a story or a news article
+-as short chunks of text,  such as reviews, tweets(or whatever X calls them now)
+-as documents with tables or graphs that were meant for human readers, not
+   as machine-readable data storage
+   
+We can work with single character strings at a time,  or with vectors of 
+characters strings such as we would see in a dataframe
+
+
+# Detecting a specific pattern in a string
+
+We can look for a pattern of symbols in a given string
+
+```{R}
+require("stringr")
+
+text_a="Welcome back to school"
+
+text_b="John is going to school"
+
+str_detect(text_a,"school")
+
+str_detect(text_a,"is")
+
+str_detect(text_b,"is")
+
+```
+
+Working with an Array of strings
+
+```{R}
+string_a=c("bob is here","jose is there","sue is home","andy is here")
+
+#note the pattern being detected in this instance is " here",  using "here" also
+#detects "there"
+
+str_detect(string_a," here")
+
+
+```
+# Subsetting strings
+
+We will often want to break text up into component pieces
+
+We might want to extract the name from each of the phrases in string_a above
+
+We can do this using a string split function
+
+```{R}
+
+# the inputs are the string to be split, the pattern or delimiter to split on
+# and the number of splits to make 
+# here we are splitting the array of strings, splitting each string on a space
+# and making up to 3 splits
+
+my_splits=str_split_fixed(string_a," ",3)
+
+my_splits
+
+```
+We could then extract the list of first names
+
+```{R}
+names=my_splits[,1]
+names
+
+
+```
+This approach is handy for extracting first and last names or telephone number
+from text
+
+#Removing white space
+
+Sometimes text will have extra white space we don't want
+
+string trimming will remove that.
+
+```{R}
+#the text below has excess white space
+
+text_c=" Jane Doe "
+
+str_trim(text_c,side="both")
+```
+# Case conversion
+
+string searches are always case sensitive
+
+it is often a good idea to convert large volumes of text to all lower case
+before searching for a specific word
+
+```{R}
+text_d="Dear Sir, It has come to our attention that your bill is overdue"
+
+str_detect(text_d,"sir")
+
+text_d=str_to_lower(text_d)
+
+str_detect(text_d,"sir")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

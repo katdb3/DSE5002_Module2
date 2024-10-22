@@ -1,0 +1,220 @@
+---
+title: "Dates_and_Lubridate"
+author: "HD Sheets"
+date: "2024-07-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Dates and the Lubridate package
+
+Dates are sort of a constant issue in data
+
+In the US,  it is common to write dates in forms such as
+
+07/09/24
+
+or
+
+July 9, 2024
+
+In Europe,   9/7/24 or 9 July, 2024
+
+the date at the top of this document is written year-month-day
+
+Humans easily interpret dates written in different formats, but computers don't at the moment (although LLMs can probably deal with this).
+
+It is common to see dates stored as text,  so R loads them as 
+character strings.
+
+We will often want to convert these to a specialized date from so we can
+
+-compute differences between dates
+-extract the month, or the year
+-determine the day of the week of a given day 
+      (why would we care about this?)
+-locate holidays
+-determine days of the week
+
+The package lubridate (Hadley Wickham and Co, again) does all kinds
+of handy date processing
+
+See also
+
+https://lubridate.tidyverse.org/
+
+lubridate also handles time data
+
+```{R}
+require("lubridate")
+
+```
+# Converting date information from text
+
+Lubridate has a whole set of converters, that have the form
+
+ymd(), mdy(),dmy()... depending on the order of month,day and year
+
+```{R}
+a=ymd("2024/01/12")
+print(a)
+class(a)
+
+```
+Note that ymd() extracted the date information and stored it in a 
+variable of type "Date"
+
+"Date" is a Class defined in lubridate, that both stores dates and has a bunch of "member functions" or "methods" that allow us to work with dates
+
+Here's another one
+
+```{R}
+b= mdy("July 4 2024")
+print(b)
+
+```
+We can now compute a difference or elapsed time between two dates, just using a subtraction
+
+```{R}
+b-a
+```
+```{R}
+c=b-a
+class(c)
+3*c
+```
+Notice that c is a different class than a and b
+
+we can convert a difftime to numeric
+
+```{R}
+d=as.numeric(c)
+d
+class(d)
+
+```
+
+# *Question/Action*
+
+in the cell below create a variable "today" that has today's date
+as a datetime variable
+
+Find the number of days since the start of the year 01/01/2024,  you'll want to convert that date to an R datetime variable as well
+
+```{R}
+# your code here
+
+```
+
+# Obtaining the current date and time from lubridate
+
+```{R}
+x=now()
+x
+class(x)
+```
+Note that the time zone is included
+
+We can extract various information from this date
+
+```{R}
+
+# basics
+month(x)
+year(x)
+day(x)
+```
+
+
+
+
+```{r}
+#time information
+hour(x)
+minute(x)
+second(x)
+```
+
+```{R}
+# days of the week
+
+wday(x,label=TRUE)
+
+```
+# Changing a time zone
+
+Simple, if we know the name of the zone
+
+```{R}
+with_tz(x,"America/Chicago")
+with_tz(x,"Etc/Greenwich")
+```
+# OlsonNames()
+
+will show us the list of valid time zone names
+
+```{R}
+OlsonNames()
+```
+
+# Using Lubridate on a data set
+
+Typically when we load a data set into a dataframe,  it will have dates in string formats.
+
+We will want to 
+
+a.) load the data file
+b.) Use head to see how the dates are formatted
+c.) use the appropiate converter to convert the column to a datetime
+
+This set of steps is going to be pretty common, let's look at it
+
+```{R}
+#use file.choose() to get the full filepath and paste the 
+# file path in here
+
+infile="G:\\My Drive\\DSE5002\\Module_2\\sales.csv"
+
+sales_df=read.csv(infile)
+
+```
+
+```{R}
+head(sales_df)
+```
+Let's convert Order.Date from a character string to
+a date-time
+
+I'm going to convert the column and then store it in sales_df$Order.Date,  replacing the original column
+
+We could also just create a new column
+
+Looking at the head, it is in mdy format
+
+```{R}
+# convert
+sales_df$Order.Date=mdy(sales_df$Order.Date)
+
+#use head to make sure the conversion worked
+head(sales_df)
+
+```
+
+# Do we have any Orders on Sundays?
+
+we can get a list of the days of the week using wday, and then use
+unique to get list of distinct days
+
+```{R}
+unique(wday(sales_df$Order.Date,label=TRUE))
+```
+
+# *Question/Action*
+
+List below three different questions you could ask about the dates in this data file?
+
+Try to think of three questions that would have drive "business value" for your organization that are related to the date information in this file
+
