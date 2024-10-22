@@ -1,0 +1,168 @@
+---
+title: "Module 01 Lab 01"
+author: "HD Sheets"
+date: "2024-10-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Module 01 Lab 01
+
+For each problem below,  create the cells needed and enter your solution
+
+# Problem 1
+
+a.) Use seq to create a vector of values x from 10 to 1, decreasing in steps of 1/2
+
+b.) Find the length of this vector, using an R function
+
+c.) Find the index of the element in x equal to 7.5
+
+d.) Remove the value 7.5 from the vector x,  so the length decreases by 1
+
+e.) Sort the vector into both increasing form and decreasing form
+
+# Problem 2
+
+Read the help manual for the function runif()
+
+a.) Generate a vector z of 10 random uniform values between 1 and 5
+
+b.) Find the minimum and maximum
+
+c.) Find the indices of the minimum and maximum
+
+d.) Compute the vector of the square values in z, store this in a vector called
+     z2
+
+e.) Find out if any of the squared vectors are less than 4
+
+f.) Find out of all the squared vectors are less than 22
+
+g.) find out how many  of the squared vectors are greater than 15
+      (hint,  try summing the test statement)
+    
+
+# Problem 3
+
+Read the help manual for rnorm to generate random normal values
+
+a.) create a vector of 9 values, all of which are equal to 3
+
+b.) Put this into a 3 by 3 matrix
+
+c.) Label the columns as "a", "b","c", and label the rows 1 to 3
+
+d.) create a vector of 12 random normal values
+
+e.) put the random normal values into  4 x 3 matrix
+
+f.) Create a 3 x 3 identity matrix,  you will need to look up how to do this 
+     in R,   google search "R identity matrix"
+
+g.) Multiply the matrix from part b by the identify matrix created in part f
+
+h.) find the row and column numbers of the largest value in the matrix created in 
+     step e
+
+i.) What is the average value of the 2nd column of the matrix from step e
+
+j.) Multiply the matrix from part e by the matrix from part b
+
+# Problem 4
+
+Explain the difference between vectors and lists in R
+
+-how are each created?
+-What is different about the two?
+-Create a list of the values 1,2,3.  Can you muliple the list by 2?
+
+# Problem 5
+
+a.) Create a list containing the items   "bob",  "sally", c(1,2,3,4), seq(1,5,by=2), c("jah","nah","hah") in it
+
+b.) How would you reference the word "nah"?
+
+c.) How would you refernce the y in "sally"
+
+d.) Extract the vector 1,2,3,4 and store it in a new variable.  Find the mean
+
+e.) Create a new list from the one in part 1 by removing "bob" and "sally" from the list
+
+# Problem 6
+
+Use ?swiss to look at the built-in data set swiss
+
+a.) What type of data type is this?
+
+b.) How many rows and columns does it have (use a function to determine this)
+
+c.) Use the summary() and str() functions on this object,  explain what they mean
+
+e.) Print out the column of Agriculture values, but no other columns
+
+d.) Which region has the highest education value?
+
+e.) Which region has the lowest infant mortality?
+
+# Problem 7
+
+a.) Use file.choose() to get the full name and file path of the example file
+sales.csv that is included in the Module 02 content
+
+-Do not use file.choose() in the RMD file,  run it in the console.  Including
+file.choose() in an RMD will cause a knit errror
+
+b.)  set infile to the path you found and load the sales.csv file
+
+```{R}
+# this is my path name for the download,  change it to the file name you get
+# using file.choose()
+
+infile="G:\\My Drive\\DSE5002\\Module_2\\sales.csv"
+
+sales_df=read.csv(infile)
+
+
+
+```
+
+c.) Use head(), str() and summary() on this data set.   How many orders are there?
+
+d.) Use the unique() function on the Segment column to find out the number of 
+distinct segments there are in the data
+
+e.) How many different customers are there?
+
+f.) Find the highest profit and the index of the highest profit
+
+g.) What was the name of the customer with the highest profit order?
+
+h.) Set the Segment variable to be a factor
+
+i.) use the lubridate package to set the Order.Data and Ship.Date varialbe to be
+lubridate style date variables
+
+j.) compute the shipping delay from each order, using order date and ship data
+     what were the longest and shortest shipping delays?
+
+k.) Were orders received on Saturday and Sunday?   Were any shipped on Sunday?
+
+l.)  Convert the Customer.Name to all lower case
+
+m.) Search the customer names and determine how many contain the name John
+
+n.) How many times is the word "table" in the product names
+         -careful,   str_detect() might find "table" in "portable",   also be
+         careful with case
+         
+o.) Use tapply to find the mean profit value, grouped by State
+   
+      https://www.statology.org/tapply-r/
+   
+p.) use tapply to find the median profit value, grouped by Segment
+
+q.) use table to get the number of orders per segment
