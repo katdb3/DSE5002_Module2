@@ -106,7 +106,9 @@ Find the number of days since the start of the year 01/01/2024,  you'll want to 
 
 ```{R}
 # your code here
-
+today=ymd("2024/10/29")
+start=ymd("2024/01/01")
+today-start
 ```
 
 # Obtaining the current date and time from lubridate
@@ -176,7 +178,7 @@ This set of steps is going to be pretty common, let's look at it
 #use file.choose() to get the full filepath and paste the 
 # file path in here
 
-infile="G:\\My Drive\\DSE5002\\Module_2\\sales.csv"
+infile="/Users/katarinadouglas-blake/Downloads/sales.csv"
 
 sales_df=read.csv(infile)
 
@@ -215,6 +217,10 @@ unique(wday(sales_df$Order.Date,label=TRUE))
 # *Question/Action*
 
 List below three different questions you could ask about the dates in this data file?
-
+# what is the start date of the dates in the data file? 
+# what is the difference in start date and most current date in the data file? 
+# How many dates are weekends?
 Try to think of three questions that would have drive "business value" for your organization that are related to the date information in this file
-
+# what day do people make the most purchases? 
+# which state makes the most purchases? 
+# how many 'corporations' are making purchases? 

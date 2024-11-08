@@ -67,7 +67,7 @@ what is happening, but when you get into the hundreds or thousands of rows,
 View() is not really useful anymore
 
 ```{R}
-View(mtcars)
+#View(mtcars)
 ```
 
 On the other hand, I use str(), head() and colnames() constantly
@@ -211,6 +211,12 @@ hist(mtcars$Power_2_Weight)
 State a hypothesis about Power_2_Weight and mpg (miles per gallon).   Create
 a graph that tests the hypothesis
 
+# Hypothesis:As mpg increases, the Power_2_Weight will increase.
+
+```{r}
+plot(mtcars$Power_2_Weight,mtcars$mpg)
+
+```
 
 # forming Tables using Tapply
 
@@ -297,13 +303,13 @@ We will use the Boston Assessment Roll again
 
 #rem this out by putting # in front of the command below
 
-file.choose()
+#file.choose()
 ```
 
 ```{R}
 # cut and paste using Ctrl-C and Ctrl-V to assign the full path to infile
 
-infile="C:\\Users\\hdavi\\Dropbox\\Merrimack_Data_Science\\DSE5002_R+Python\\DSE5002_Module_1\\Boston_Assessment_Roll_2024.csv"
+infile="/Users/katarinadouglas-blake/Downloads/Boston_Assessment_Roll_2024.csv"
 ```
 
 now use read.csv() to load the assessment roll into a data frame
@@ -355,7 +361,7 @@ specify the file name
 #I like to put the date in the name of an output file, it helps in long 
 #projects
 
-outfile="customer_df_6_21_2024.csv"
+outfile="customer_df_10_29_2024.csv"
 ```
 
 ```{R}

@@ -94,12 +94,21 @@ prod(Jane_spending)
 # *Actions:  Create cells that*
 
 a. Calculate what Jane spends per week
+```{r}
+Jane_spending/7
+```
 
 b. What is Jane's total yearly spending?    Hint: use the sum() function
+```{r}
+sum(Jane_spending*12)
+```
 
 c. Set up a monthly spending vector for some other person
-
 # Vectorized calculations
+```{r}
+mel_spending=c(1900,300,600,500,210,400,250)
+mel_spending
+```
 
 We can carry out operations on vectors that are
 
@@ -243,8 +252,24 @@ plot(x,y)
 Use code to figure out
 
 a.) How long is x?  How long is y?
+```{r}
+length(x)
+length(y)
+```
+
 b.) What is the minimum y?  what location in the y array does it occur at?
+```{r}
+min(y)
+y
+#min(y) occurs in the [24] location in the y array.
+```
+
 c.) Which x value produces the minimum y?
+```{r}
+x
+y
+#the [24] of x, 1.5 produces the minimum y
+```
 
 
 # Recycling
@@ -366,10 +391,10 @@ There is a way to compute differences in sets
 ```{R}
 setdiff(set_a,set_b)
 setdiff(set_b,set_a)
-
+?setdiff
 ```
 Why did changing the order matter?
-
+#it looked for the rows in set_b that aren't in set_y.
 Look up setdiff in the help function
 
 
